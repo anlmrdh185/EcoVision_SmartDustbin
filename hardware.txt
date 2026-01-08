@@ -1,0 +1,27 @@
+Breadboard Negative Power Rail (left) -> Breadboard Negative Power Rail (right)
+Maker USB / Breadboard J7 -> Breadboard Positive Power Rail (right)
+Maker GND / Breadboard A4 -> Breadboard Negative Power Rail (left)
+PIR sensor (black,blue,red) from left to right
+PIR sensor (black,red,blue) from top to bottom
+PIR sensor SIG -> Maker Port (left) Pin D4
+PIR sensor VCC -> Maker Port (left) VP
+PIR sensor GND -> Maker Port (left) G
+Battery Holder Red Wire (+) -> Breadboard Positive Power Rail (right)
+Battery Holder Black Wire (-) -> Breadboard Negative Power Rail (right)
+
+Servo 1 (360° - "Paper"):
+
+Red Wire -> Breadboard Positive Rail (Battery +)
+Brown Wire -> Breadboard Negative Rail (Battery -)
+Orange Wire -> Maker Pin Pin D5/A3/A5
+
+Servo 2 (180° - "Plastic"):
+
+Red Wire -> Breadboard Positive Rail (Battery +)
+Brown Wire -> Breadboard Negative Rail (Battery -)
+Orange Wire -> Maker Pin A0 / A5 Breadboard (Existing Pin)
+
+Servo 3 (180° - "metal"):
+Red Wire -> Breadboard Positive Rail (Battery +)
+Brown Wire -> Breadboard Negative Rail (Battery -)
+Orange Wire -> Maker Pin D6
