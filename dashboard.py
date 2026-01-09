@@ -1,4 +1,4 @@
-isiimport streamlit as st
+import streamlit as st
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import db
@@ -192,4 +192,5 @@ while True:
 
     # Refresh
     time.sleep(refresh_rate)
+
 
