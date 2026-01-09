@@ -9,7 +9,8 @@ import plotly.express as px
 
 # --- PAGE CONFIGURATION ---
 st.set_page_config(
-    page_title="EcoSmart Bin AI",
+    page_title="EcoVision Recycle Bin",
+    page_icon="♻️",
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -23,11 +24,9 @@ st.markdown("""
     """, unsafe_allow_html=True)
 
 # --- CONNECT TO FIREBASE ---
-# 1. Initialize connection only if not already connected
 if not firebase_admin._apps:
-    # Use Streamlit Secrets instead of a local JSON file
-    firebase_secrets = dict(st.secrets["firebase_service_account"])
-    cred = credentials.Certificate(firebase_secrets) 
+    cred = credentials.Certificate("firebase_key.json.json") 
+    # REPLACE WITH YOUR URL IF NEEDED
     firebase_admin.initialize_app(cred, {
         'databaseURL': 'https://smartdustbin-61ec7-default-rtdb.firebaseio.com/' 
     })
@@ -50,19 +49,18 @@ with st.sidebar:
 
 # --- MAIN DASHBOARD LAYOUT ---
 st.title("♻️ Smart Dustbin Analytics (Lifetime Data)")
-st.markdown("Real-time monitoring of waste classification, environmental impact, and usage trends.")
+st.markdown("Real-time monitoring of waste classification and usage trends.")
 
 # Create Tabs
 tab1, tab2, tab3 = st.tabs(["📊 Dashboard Overview", "📅 Trends & History", "📥 Export Data"])
 
 # --- TAB 1: DASHBOARD PLACEHOLDERS ---
 with tab1:
-    # Row 1: Key Metrics
-    col1, col2, col3, col4 = st.columns(4)
+    # Row 1: Key Metrics (Changed to 3 Columns)
+    col1, col2, col3 = st.columns(3)
     with col1: metric_total = st.empty()
-    with col2: metric_co2 = st.empty()
-    with col3: metric_accuracy = st.empty()
-    with col4: metric_peak = st.empty()
+    with col2: metric_accuracy = st.empty()
+    with col3: metric_peak = st.empty()
 
     st.divider()
     
@@ -85,11 +83,6 @@ with tab2:
     st.subheader("📝 Recent Logs")
     table_placeholder = st.empty()
 
-# --- HELPER FUNCTION: CO2 CALCULATION ---
-def calculate_impact(plastic, paper, metal):
-    # Estimated kg of CO2 saved per item
-    return round((plastic * 0.05) + (paper * 0.01) + (metal * 0.1), 2)
-
 # --- MAIN LOOP ---
 while True:
     if not auto_refresh:
@@ -98,14 +91,10 @@ while True:
 
     try:
         # 1. Fetch ALL Data from Firebase
-        # IMPORTANT: Make sure this matches your folder name in Firebase Console
         ref = db.reference('SmartBin_Logs')
         data = ref.get()
 
         if data:
-            # --- DEBUGGING: Check if data is loaded ---
-            # st.success(f"✅ Connected! Found {len(data)} records.") 
-
             # 2. Convert JSON to Pandas DataFrame
             df = pd.DataFrame.from_dict(data, orient='index')
             
@@ -114,17 +103,15 @@ while True:
                 df['timestamp'] = pd.to_datetime(df['timestamp'])
                 df = df.sort_values(by='timestamp', ascending=False)
             
-            # 4. CALCULATE LIFETIME TOTALS (The Fix)
+            # 4. CALCULATE LIFETIME TOTALS
             # We count every row in the database history
             c_plastic = len(df[df['category'].astype(str).str.contains("Plastic", case=False)])
             c_paper = len(df[df['category'].astype(str).str.contains("Paper", case=False)])
             c_metal = len(df[df['category'].astype(str).str.contains("Metal", case=False)])
             
             total_items = c_plastic + c_paper + c_metal
-            co2_saved = calculate_impact(c_plastic, c_paper, c_metal)
 
             # 5. UPDATE SYSTEM STATUS (Active/Idle)
-            # Check the very first row (most recent time)
             latest_time = df.iloc[0]['timestamp']
             seconds_ago = (datetime.now() - latest_time).total_seconds()
             
@@ -140,19 +127,16 @@ while True:
             # Metrics
             with metric_total:
                 st.metric("Lifetime Recycled", total_items, delta="Items")
-            with metric_co2:
-                st.metric("CO2 Avoided", f"{co2_saved} kg", delta="Impact")
+            
             with metric_accuracy:
-                # Calculate average confidence if column exists
                 if 'confidence' in df.columns:
-                    # Remove '%' sign and convert to number
                     clean_conf = df['confidence'].astype(str).str.replace('%','').astype(float)
                     avg_conf = clean_conf.mean()
                     st.metric("Avg AI Accuracy", f"{int(avg_conf)}%")
                 else:
                      st.metric("Avg AI Accuracy", "N/A")
+
             with metric_peak:
-                # Find most common item
                 mats = {'Plastic': c_plastic, 'Paper': c_paper, 'Metal': c_metal}
                 top_item = max(mats, key=mats.get) if total_items > 0 else "None"
                 st.metric("Top Category", top_item)
@@ -184,7 +168,6 @@ while True:
 
             # Recent Logs Table
             display_cols = ['timestamp', 'category', 'confidence']
-            # Only show columns that actually exist
             valid_cols = [c for c in display_cols if c in df.columns]
             table_placeholder.dataframe(df[valid_cols].head(10), use_container_width=True)
 
@@ -200,14 +183,12 @@ while True:
                 )
 
         else:
-            # If database is empty or name is wrong
             st.warning("⚠️ Database connected but found NO DATA in 'SmartBin_Logs'.")
             st.info("Check: Did you run the Python AI script yet?")
 
     except Exception as e:
-        # st.error(f"Error: {e}") # Uncomment to see technical errors
+        # st.error(f"Error: {e}") 
         pass
 
     # Refresh
-
     time.sleep(refresh_rate)
