@@ -25,8 +25,9 @@ st.markdown("""
 # --- CONNECT TO FIREBASE ---
 # 1. Initialize connection only if not already connected
 if not firebase_admin._apps:
-    cred = credentials.Certificate("firebase_key.json.json") 
-    # REPLACE WITH YOUR URL IF NEEDED
+    # Use Streamlit Secrets instead of a local JSON file
+    firebase_secrets = dict(st.secrets["firebase_service_account"])
+    cred = credentials.Certificate(firebase_secrets) 
     firebase_admin.initialize_app(cred, {
         'databaseURL': 'https://smartdustbin-61ec7-default-rtdb.firebaseio.com/' 
     })
@@ -208,4 +209,5 @@ while True:
         pass
 
     # Refresh
+
     time.sleep(refresh_rate)
