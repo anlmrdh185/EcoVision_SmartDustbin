@@ -51,15 +51,15 @@ This project relies on the YOLOv8 (You Only Look Once) architecture by Ultralyti
 # Installation & Setup Guide
 
 # Step 1: Hardware Wiring
-Connect your components to the ESP32 pins as defined in `smart.ino`:
+Connect components to the ESP32 pins as defined in `smart.ino`:
 
 | Component           | Pin on ESP32 | Notes         |
 | :-----------------: | :----------: | :-----------: |
 | PIR Sensor (Output) | GPIO 4       | Input pin     |
-| Servo 1 (Plastic)   | GPIO 5       | PWM Output    |
-| Servo 2 (Paper)     | GPIO 10      | PWM Output    |
-| Servo 3 (Metal)     | GPIO 9       | PWM Output    |
-| GND                 | GND          | Common Ground |
+| Servo 1 (Plastic)   | GPIO 5       | Output    |
+| Servo 2 (Paper)     | GPIO 10      | Output    |
+| Servo 3 (Metal)     | GPIO 9       | Output    |
+| Power battery | V_BAT (+) / GND (-) | External power via Breadboard Rails |
 
 
 # Step 2: Firmware Setup (Arduino)
