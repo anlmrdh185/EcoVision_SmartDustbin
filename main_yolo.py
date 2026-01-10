@@ -13,9 +13,10 @@ from datetime import datetime
 # --- CONFIGURATION: FIREBASE ---
 KEY_FILE = "firebase_key.json.json"
 
+# 2. YOUR DATABASE URL 
 DATABASE_URL = "https://smartdustbin-61ec7-default-rtdb.firebaseio.com/"  
 
-ARDUINO_PORT = 'COM4' 
+ARDUINO_PORT = 'COM4'  # Check port
 BAUD_RATE = 115200
 
 # --- COOLDOWN SETTINGS ---
@@ -31,7 +32,7 @@ try:
     ref = db.reference('SmartBin_Logs')
     print("SUCCESS! ✅")
 except Exception as e:
-    print(f"\n❌ FIREBASE ERROR: {e}")
+    print(f"\nFIREBASE ERROR: {e}")
     ref = None
 
 # --- 2. CONNECT TO ARDUINO ---
@@ -41,7 +42,7 @@ try:
     time.sleep(2) 
     print("SUCCESS! ✅")
 except:
-    print("⚠️ FAILED (Simulation Mode)")
+    print("FAILED (Simulation Mode)")
     ser = None
 
 # --- 3. LOAD YOLO MODEL ---
@@ -51,7 +52,7 @@ try:
     classNames = model.names 
     print(f"Classes found: {classNames}")
 except Exception as e:
-    print(f"❌ MODEL ERROR: {e}")
+    print(f"MODEL ERROR: {e}")
     exit()
 
 # --- SETUP CAMERA & VARIABLES ---
@@ -111,23 +112,18 @@ while True:
                 # Calculate Confidence
                 conf = math.ceil((box.conf[0] * 100)) / 100
                 
-                # Only accept > 80% 
+                # --- MODIFICATION: Only accept > 80% ---
                 if conf > 0.8: 
                     last_activity_time = time.time() # Keep system awake
                     
                     cls = int(box.cls[0])
                     currentClass = classNames[cls]
                     
-                    # Get Bounding Box 
+                    # --- MODIFICATION: Get Bounding Box ---
                     x1, y1, x2, y2 = box.xyxy[0]
                     x1, y1, x2, y2 = int(x1), int(y1), int(x2), int(y2)
                     w, h = x2 - x1, y2 - y1
                     
-                    # PRINT COORDINATES
-                    print(f"Found {currentClass} ({conf*100}%) at: x1={x1}, y1={y1}, x2={x2}, y2={y2}")
-
-                    # Draw UI
-                    cvzone.cornerRect(img, (x1, y1, w, h))
                     cvzone.putTextRect(img, f'{currentClass} {conf}', (max(0, x1), max(35, y1)), scale=1, thickness=1)
 
                     if conf > highest_conf:
@@ -169,7 +165,7 @@ while True:
             if valid_sort:
                 # 1. Trigger the Cooldown
                 last_sort_time = time.time()
-                print(f"   -> ⏳ Cooldown started for {SORTING_COOLDOWN} seconds...")
+                print(f"   -> Cooldown started for {SORTING_COOLDOWN} seconds...")
 
                 # 2. Upload to Firebase
                 if ref:
@@ -186,12 +182,12 @@ while True:
                     }
                     try:
                         ref.push(data)
-                        print("   -> 🔥 Firebase Uploaded!")
+                        print("   -> Firebase Uploaded!")
                     except Exception as e:
-                        print(f"   -> ❌ Upload Failed: {e}")
+                        print(f"   -> Upload Failed: {e}")
 
         # Show the Window
-        cv2.imshow("Smart Bin AI", img)
+        cv2.imshow("EcoVision", img)
         
         # TIMEOUT CHECK
         if time.time() - last_activity_time > ACTIVE_TIMEOUT:
@@ -208,6 +204,10 @@ while True:
         time.sleep(0.1) 
 
 cap.release()
+cv2.destroyAllWindows()
+
+cap.release()
 
 cv2.destroyAllWindows()
+
 
