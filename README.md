@@ -78,6 +78,8 @@ This project relies on the YOLOv8 (You Only Look Once) architecture by Ultralyti
 | Servo Power (+) | Breadboard (+) | Connect Red wires to Battery (+) rail |
 | Servo Ground (-) | Breadboard (-) | Connect Brown wires to Battery (-) rail |
 | Common Ground | GND | Connect Battery (-) to Board GND |
+| Battery Holder (+) | Red Wire | Breadboard Positive (+) Rail |
+| Battery Holder (-) | Black Wire | Breadboard Negative (-) Rail |
 
 # Step 3: Firmware Setup (Arduino)
 1.  Open Arduino IDE.
