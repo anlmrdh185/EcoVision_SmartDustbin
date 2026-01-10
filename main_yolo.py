@@ -111,14 +111,14 @@ while True:
                 # Calculate Confidence
                 conf = math.ceil((box.conf[0] * 100)) / 100
                 
-                # --- MODIFICATION: Only accept > 80% ---
+                # Only accept > 80% 
                 if conf > 0.8: 
                     last_activity_time = time.time() # Keep system awake
                     
                     cls = int(box.cls[0])
                     currentClass = classNames[cls]
                     
-                    # --- MODIFICATION: Get Bounding Box ---
+                    # Get Bounding Box 
                     x1, y1, x2, y2 = box.xyxy[0]
                     x1, y1, x2, y2 = int(x1), int(y1), int(x2), int(y2)
                     w, h = x2 - x1, y2 - y1
@@ -210,3 +210,4 @@ while True:
 cap.release()
 
 cv2.destroyAllWindows()
+
