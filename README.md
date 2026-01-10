@@ -61,7 +61,7 @@ This project relies on the YOLOv8 (You Only Look Once) architecture by Ultralyti
 | Webcam (laptop build in) | 1 | Connected for AI vision |
 | Battery Holder | 1 | External power for servos (4x AA with 1.5v each) |
 | Breadboard | 1 | For circuit connections |
-| Jumper Wires | Set | Male-to-Male & Male-to-Female |
+| Jumper Wires | 15 | Male-to-Male & Male-to-Female |
 |Qwicc Cable | 1|To connect PIR Sensor to the Maker Port|
 
 # Step 2: Wiring Connection
