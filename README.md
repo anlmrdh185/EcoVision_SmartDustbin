@@ -24,7 +24,7 @@ This project relies on the YOLOv8 (You Only Look Once) architecture by Ultralyti
     1.  `Plastic`
     2.  `Paper`
     3.  `Metal`
-* Logic: The system filters detections with a confidence score > 70%. If a valid object is found, it triggers the corresponding serial command to the ESP32.
+* Logic: The system filters detections with a confidence score > 80%. If a valid object is found, it triggers the corresponding serial command to the ESP32.
 
 ---
 # Hardware & Software Requirements
@@ -59,7 +59,6 @@ Connect components to the ESP32 pins as defined in `smart.ino`:
 | Servo 1 (Plastic)   | GPIO 5       | Output    |
 | Servo 2 (Paper)     | GPIO 10      | Output    |
 | Servo 3 (Metal)     | GPIO 9       | Output    |
-| Power battery | V_BAT (+) / GND (-) | External power via Breadboard Rails |
 
 
 # Step 2: Firmware Setup (Arduino)
