@@ -35,7 +35,7 @@ This project relies on the YOLOv8 (You Only Look Once) architecture by Ultralyti
 | Maker Feather ESP32     | 1        | Main Microcontroller                     |
 | Servo Motors (SG90) | 3        | Actuators for Plastic, Paper, Metal lids |
 | PIR Motion Sensor   | 1        | HC-SR501 for presence detection          |
-| Webcam (laptop built in)             | 1        | USB Camera for computer vision           |
+| Laptop Webcam             | 1        | USB Camera for computer vision           |
 | PC / Laptop         | 1        | Runs the Python AI processing unit       |
 | Male to Male Wires  | 15       | For connections                          |
 | Power Supply        | 4        | 6V external power for servos (1.5v each)            |
@@ -58,8 +58,8 @@ This project relies on the YOLOv8 (You Only Look Once) architecture by Ultralyti
 | PIR Motion Sensor | 1 | Detects motion to wake up the system |
 | Servo Motor (360° ) | 1 | For "Paper" bin lid  |
 | Servo Motor (180° ) | 2 | For "Plastic" and "Metal" bin lids |
-| Webcam (laptop build in) | 1 | Connected for AI vision |
-| Battery Holder | 1 | External power for servos (4x AA with 1.5v each) |
+| Laptop Webcam  | 1 | Connected for AI vision |
+| Battery AA (6v) | 4 | External power for servos (with 1.5v each) |
 | Breadboard | 1 | For circuit connections |
 | Jumper Wires | 15 | Male-to-Male & Male-to-Female |
 |Qwicc Cable | 1|To connect PIR Sensor to the Maker Port|
