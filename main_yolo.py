@@ -11,14 +11,11 @@ from firebase_admin import db
 from datetime import datetime
 
 # --- CONFIGURATION: FIREBASE ---
-# 1. Your Key File
 KEY_FILE = "firebase_key.json.json"
 
-# 2. YOUR DATABASE URL (PASTE IT HERE!)
-# Example: "https://your-project.asia-southeast1.firebasedatabase.app/"
 DATABASE_URL = "https://smartdustbin-61ec7-default-rtdb.firebaseio.com/"  
 
-ARDUINO_PORT = 'COM4'  # Check your port!
+ARDUINO_PORT = 'COM4' 
 BAUD_RATE = 115200
 
 # --- COOLDOWN SETTINGS ---
@@ -211,4 +208,5 @@ while True:
         time.sleep(0.1) 
 
 cap.release()
+
 cv2.destroyAllWindows()
