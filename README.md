@@ -55,7 +55,7 @@ Connect components to the ESP32 pins as defined in `smart.ino`:
 
 | Component           | Pin on ESP32 | Notes         |
 | :-----------------: | :----------: | :-----------: |
-| PIR Sensor (Output) | GPIO 4       | Input pin     |
+| PIR Sensor (Output) | GPIO 4       | Input     |
 | Servo 1 (Plastic)   | GPIO 5       | Output    |
 | Servo 2 (Paper)     | GPIO 10      | Output    |
 | Servo 3 (Metal)     | GPIO 9       | Output    |
