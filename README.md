@@ -68,7 +68,7 @@ This project relies on the YOLOv8 (You Only Look Once) architecture by Ultralyti
 | Component | Pin Label (Board) | Wire Color and  Function |
 | :--- | :--- | :--- |
 | PIR Sensor | D4 | Signal Output|
-| PIR Power| VP / 3V3 | VCC (+) |
+| PIR Power| VP | VCC (+) |
 | PIR Ground | GND | GND (-) |
 | | | |
 | Servo 1 (Paper)| A3 | Signal (Orange/Yellow wire) |
