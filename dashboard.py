@@ -48,7 +48,7 @@ with st.sidebar:
     st.info("💡 Tip: Recycle Plastic bottles to level up faster!")
 
 # --- MAIN DASHBOARD LAYOUT ---
-st.title("♻️ Smart Dustbin Analytics")
+st.title("♻️ EcoVision Smart Dustbin Analytics")
 st.markdown("Real-time monitoring of waste classification and usage trends.")
 
 # Create Tabs
@@ -193,3 +193,4 @@ while True:
     # Refresh
 
     time.sleep(refresh_rate)
+
