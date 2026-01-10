@@ -56,8 +56,8 @@ This project relies on the YOLOv8 (You Only Look Once) architecture by Ultralyti
 | :--- | :---: | :--- |
 | Cytron Maker FeatherS3 (or ESP32) | 1 | Main Microcontroller |
 | PIR Motion Sensor | 1 | Detects motion to wake up the system |
-| Servo Motor (360° ) | 1 | For bin lid  |
-| Servo Motor (180° ) | 2 | For bin lids |
+| Servo Motor (360° ) | 1 | For "Paper" bin lid  |
+| Servo Motor (180° ) | 2 | For "Plastic" and "Metal" bin lids |
 | Webcam (laptop build in) | 1 | Connected for AI vision |
 | Battery Holder | 1 | External power for servos (4x AA with 1.5v each) |
 | Breadboard | 1 | For circuit connections |
