@@ -32,13 +32,13 @@ This project relies on the YOLOv8 (You Only Look Once) architecture by Ultralyti
 # Hardware Checklist
 | Component           | Quantity | Description                              |
 | :-----------------: | :------: | :--------------------------------------: |
-| ESP32 Dev Module    | 1        | Main Microcontroller                     |
+| Maker Feather ESP32     | 1        | Main Microcontroller                     |
 | Servo Motors (SG90) | 3        | Actuators for Plastic, Paper, Metal lids |
 | PIR Motion Sensor   | 1        | HC-SR501 for presence detection          |
-| Webcam              | 1        | USB Camera for computer vision           |
+| Webcam (laptop built in)             | 1        | USB Camera for computer vision           |
 | PC / Laptop         | 1        | Runs the Python AI processing unit       |
 | Male to Male Wires  | 15       | For connections                          |
-| Power Supply        | 4        | 6V external power for servos             |
+| Power Supply        | 4        | 6V external power for servos (1.5v each)            |
 
 # Software Prerequisites
 * Python 3.10+ (Required for AI scripts)
