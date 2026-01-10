@@ -51,17 +51,35 @@ This project relies on the YOLOv8 (You Only Look Once) architecture by Ultralyti
 # Installation & Setup Guide
 
 # Step 1: Hardware Wiring
-Connect components to the ESP32 pins as defined in `smart.ino`:
 
-| Component           | Pin on ESP32 | Notes         |
-| :-----------------: | :----------: | :-----------: |
-| PIR Sensor (Output) | GPIO 4       | Input     |
-| Servo 1 (Plastic)   | GPIO 5       | Output    |
-| Servo 2 (Paper)     | GPIO 10      | Output    |
-| Servo 3 (Metal)     | GPIO 9       | Output    |
+| Component | Quantity | Description |
+| :--- | :---: | :--- |
+| Cytron Maker FeatherS3 (or ESP32) | 1 | Main Microcontroller |
+| PIR Motion Sensor | 1 | Detects motion to wake up the system |
+| Servo Motor (360° ) | 1 | For bin lid  |
+| Servo Motor (180° ) | 2 | For bin lids |
+| Webcam (laptop build in) | 1 | Connected for AI vision |
+| Battery Holder | 1 | External power for servos (4x AA with 1.5v each) |
+| Breadboard | 1 | For circuit connections |
+| Jumper Wires | Set | Male-to-Male & Male-to-Female |
+|Qwicc Cable | 1|To connect PIR Sensor to the Maker Port|
 
+# Step 2: Wiring Connection
+| Component | Pin Label (Board) | Wire Color and  Function |
+| :--- | :--- | :--- |
+| PIR Sensor | D4 | Signal Output|
+| PIR Power| VP / 3V3 | VCC (+) |
+| PIR Ground | GND | GND (-) |
+| | | |
+| Servo 1 (Paper)| A3 | Signal (Orange/Yellow wire) |
+|Servo 2 (Plastic) | A0 | Signal (Orange/Yellow wire) |
+| Servo 3 (Metal) | A1 | Signal (Orange/Yellow wire) |
+| | | |
+| Servo Power (+) | Breadboard (+) | Connect Red wires to Battery (+) rail |
+| Servo Ground (-) | Breadboard (-) | Connect Brown wires to Battery (-) rail |
+| Common Ground | GND | Connect Battery (-) to Board GND |
 
-# Step 2: Firmware Setup (Arduino)
+# Step 3: Firmware Setup (Arduino)
 1.  Open Arduino IDE.
 2.  Install the ESP32 Board Manager.
 3.  Go to Sketch > Include Library > Manage Libraries.
@@ -70,14 +88,14 @@ Connect components to the ESP32 pins as defined in `smart.ino`:
 6.  Select your Board and Port.
 7.  Upload the code.
 
-# Step 3: Python Environment Setup
+# Step 4: Python Environment Setup
 1.  Ensure Python is installed.
 2.  Open your terminal/command prompt in the project folder.
 3.  Install the required dependencies:
     pip install ultralytics cvzone pyserial firebase-admin streamlit plotly pandas
     
 
-# Step 4: Firebase Configuration
+# Step 5: Firebase Configuration
 1.  Go to the [Firebase Console](https://console.firebase.google.com/).
 2.  Create a project and enable Realtime Database.
 3.  Go to Project Settings > Service Accounts.
