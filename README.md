@@ -122,6 +122,8 @@ We have included a One-Click Launcher to make running the system easy.
 
 ---
 
+# Project Structure
+
 Smart-Dustbin-Project/
 ├── Start.bat           # One-click system launcher
 ├── main_yolo.py        # Main AI Logic & Hardware Communication
