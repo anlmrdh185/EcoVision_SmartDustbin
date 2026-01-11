@@ -122,12 +122,13 @@ We have included a One-Click Launcher to make running the system easy.
 
 ---
 
-# Project Structure
+### Project Structure
 
+```text
 Smart-Dustbin-Project/
-├── Start.bat           # One-click system launcher
-├── main_yolo.py        # Main AI Logic & Hardware Communication
-├── dashboard.py        # Streamlit Web Analytics App
-├── model.pt            # Trained YOLOv8 AI Model
-├── smart.ino           # ESP32 Firmware C++ Code
-└── README.md           # Project Documentation
+├── Start.bat
+├── main_yolo.py
+├── dashboard.py
+├── model.pt
+├── smart.ino
+└── README.md
