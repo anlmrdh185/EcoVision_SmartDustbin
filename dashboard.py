@@ -6,6 +6,7 @@ import pandas as pd
 import time
 from datetime import datetime
 import plotly.express as px 
+import json
 
 # --- PAGE CONFIGURATION ---
 st.set_page_config(
@@ -25,8 +26,12 @@ st.markdown("""
 
 # --- CONNECT TO FIREBASE ---
 if not firebase_admin._apps:
-    cred = credentials.Certificate("firebase_key.json.json") 
-    # REPLACE WITH YOUR URL IF NEEDED
+    # Load credentials from Streamlit secrets
+    # This assumes your secrets.toml has a section named [firebase]
+    key_dict = dict(st.secrets["firebase"])
+
+    cred = credentials.Certificate(key_dict)
+    
     firebase_admin.initialize_app(cred, {
         'databaseURL': 'https://smartdustbin-61ec7-default-rtdb.firebaseio.com/' 
     })
