@@ -28,7 +28,7 @@ st.markdown("""
 if not firebase_admin._apps:
     # Load credentials from Streamlit secrets
     # This assumes your secrets.toml has a section named [firebase]
-    key_dict = dict(st.secrets["firebase"])
+    key_dict = dict(st.secrets["firebase_service_account"])
 
     cred = credentials.Certificate(key_dict)
     
